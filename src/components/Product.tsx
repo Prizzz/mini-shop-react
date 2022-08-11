@@ -8,14 +8,16 @@ interface ProductProps {
 const Product = ({ product }: ProductProps) => {
   const [details, setDetails] = useState(false);
 
-  const btnBgClassName: string = details ? "bg-yellow-400" : "bg-blue-400";
-  const btnClasses: string[] = ["py-2 px-4 rounded", btnBgClassName];
+  const btnBgClassName: string = details
+    ? "bg-yellow-400 hover:bg-yellow-500"
+    : "bg-blue-400 hover:bg-blue-500";
+  const btnClasses: string[] = ["py-2 px-4 rounded transition", btnBgClassName];
 
   return (
-    <div className="border py-2 px-4 rounded flex flex-col items-center mb-2">
-      <img src={product.image} className="w-1/6" alt={product.title} />
+    <div className="border py-2 px-4 rounded flex flex-col items-center w-1/5">
+      <img src={product.image} className="w-24" alt={product.title} />
       <p>{product.title}</p>
-      <span className="font-bold">{product.price}</span>
+      <span className="font-bold">Price: {product.price}$</span>
       <button
         className={btnClasses.join(" ")}
         onClick={() => setDetails((prev) => !prev)}
@@ -27,8 +29,7 @@ const Product = ({ product }: ProductProps) => {
         <div>
           <p>{product.description}</p>
           <p>
-            Rate:{" "}
-            <span style={{ fontWeight: "bold" }}>{product.rating.rate}</span>
+            Rate: <span style={{ fontWeight: 700 }}>{product.rating.rate}</span>
           </p>
         </div>
       )}
