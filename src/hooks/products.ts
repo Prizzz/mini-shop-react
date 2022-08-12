@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
-import { IProduct } from "../../models";
+import { IProduct } from "../models";
 
 export function useProducts() {
   const [products, setProducts] = useState<IProduct[]>([]);

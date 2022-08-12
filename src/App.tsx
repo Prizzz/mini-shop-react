@@ -1,15 +1,23 @@
+import CreateProduct from "./components/CreateProduct";
+import ErrorMessage from "./components/ErrorMessage";
+import Loader from "./components/Loader";
+import Modal from "./components/Modal";
 import Product from "./components/Product";
-import { useProducts } from "./components/hooks/products";
+import { useProducts } from "./hooks/products";
 
 function App() {
   const { loading, products, error } = useProducts();
   return (
     <div className="container mx-auto max-w-7xl flex flex-wrap justify-center gap-3 pt-5">
-      {loading && <p className="text-center font-bold font-xl">loading...</p>}
-      {error && <p className="text-center font-bold font-xl">{error}</p>}
+      {loading && <Loader />}
+      {error && <ErrorMessage error={error} />}
       {products.map((product) => (
         <Product product={product} key={product.id} />
       ))}
+
+      <Modal title="Create new product">
+        <CreateProduct />
+      </Modal>
     </div>
   );
 }
